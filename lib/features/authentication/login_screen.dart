@@ -12,6 +12,10 @@ class LoginScreen extends StatelessWidget {
     Navigator.of(context).pop();
   }
 
+  void _onEmailTap(BuildContext context) {}
+
+  void _onAppleTap(BuildContext context) {}
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -43,11 +47,13 @@ class LoginScreen extends StatelessWidget {
               AuthButton(
                 text: "Use email & password",
                 icon: FaIcon(FontAwesomeIcons.user),
+                onTap: _onEmailTap,
               ),
               Gaps.v16,
               AuthButton(
                 text: "Continue with Apple",
                 icon: FaIcon(FontAwesomeIcons.apple),
+                onTap: _onAppleTap,
               ),
             ],
           ),
@@ -55,7 +61,7 @@ class LoginScreen extends StatelessWidget {
       ),
       bottomNavigationBar: BottomAppBar(
         shadowColor: Colors.black,
-        surfaceTintColor: Colors.grey.shade100,
+        surfaceTintColor: Colors.grey.shade50,
         elevation: 2,
         height: 80,
         child: Row(
