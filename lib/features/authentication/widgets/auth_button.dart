@@ -6,7 +6,7 @@ import '../../../constants/sizes.dart';
 class AuthButton extends StatelessWidget {
   final String text;
   final FaIcon icon;
-  final void Function(BuildContext) onTap;
+  final Function onTap;
 
   const AuthButton(
       {super.key, required this.text, required this.icon, required this.onTap});
