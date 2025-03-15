@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import '../../constants/gaps.dart';
 import '../../constants/sizes.dart';
 import '../onboarding/interests_screen.dart';
-import 'email_screen.dart';
 import 'widgets/form_button.dart';
 
 class BirthdayScreen extends StatefulWidget {

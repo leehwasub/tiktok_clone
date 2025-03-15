@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tiktok_clone/features/authentication/birthday_screen.dart';
-import 'package:tiktok_clone/features/authentication/password_screen.dart';
 
 import '../../constants/gaps.dart';
 import '../../constants/sizes.dart';
