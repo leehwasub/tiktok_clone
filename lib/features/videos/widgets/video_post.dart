@@ -52,11 +52,6 @@ class _VideoPostState extends State<VideoPost>
       value: 1.5,
       duration: _animationDuration,
     );
-    _animationController.addListener(
-      () {
-        setState(() {});
-      },
-    );
   }
 
   @override
@@ -74,12 +69,12 @@ class _VideoPostState extends State<VideoPost>
   void _onTogglePause() {
     if (_videoPlayerController.value.isPlaying) {
       _videoPlayerController.pause();
-      _isPaused = true;
       _animationController.reverse();
+      _isPaused = true;
     } else {
       _videoPlayerController.play();
-      _isPaused = false;
       _animationController.forward();
+      _isPaused = false;
     }
     setState(() {});
   }
@@ -111,8 +106,14 @@ class _VideoPostState extends State<VideoPost>
           Positioned.fill(
             child: IgnorePointer(
               child: Center(
-                child: Transform.scale(
-                  scale: _animationController.value,
+                child: AnimatedBuilder(
+                  animation: _animationController,
+                  builder: (context, child) {
+                    return Transform.scale(
+                      scale: _animationController.value,
+                      child: child,
+                    );
+                  },
                   child: AnimatedOpacity(
                     opacity: _isPaused ? 1 : 0,
                     duration: _animationDuration,
