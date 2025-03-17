@@ -25,7 +25,6 @@ class _VideoTimelineScreenState extends State<VideoTimelineScreen> {
       _itemCount = _itemCount + 4;
       setState(() {});
     }
-    print("TestPage : $page");
   }
 
   void _onVideoFinished() {
@@ -42,7 +41,7 @@ class _VideoTimelineScreenState extends State<VideoTimelineScreen> {
       scrollDirection: Axis.vertical,
       onPageChanged: _onPageChanged,
       itemBuilder: (context, index) =>
-          VideoPost(onVideoFinished: _onVideoFinished),
+          VideoPost(onVideoFinished: _onVideoFinished, index: index),
     );
   }
 }
