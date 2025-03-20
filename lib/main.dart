@@ -21,6 +21,9 @@ class TikTokApp extends StatelessWidget {
         textSelectionTheme: TextSelectionThemeData(
           cursorColor: Color(0xFFE9435A),
         ),
+        //클릭시 효과 제거
+        splashColor: Colors.transparent,
+        highlightColor: Colors.transparent,
         appBarTheme: AppBarTheme(
           backgroundColor: Colors.white,
           foregroundColor: Colors.black,
