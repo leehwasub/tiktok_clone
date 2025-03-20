@@ -12,18 +12,59 @@ class ActivityScreen extends StatefulWidget {
   State<ActivityScreen> createState() => _ActivityScreenState();
 }
 
-class _ActivityScreenState extends State<ActivityScreen> {
+class _ActivityScreenState extends State<ActivityScreen>
+    with SingleTickerProviderStateMixin {
   final List<String> _notifications = List.generate(20, (index) => "${index}h");
+
+  late final AnimationController _animationController = AnimationController(
+    vsync: this,
+    duration: Duration(milliseconds: 200),
+  );
+
+  late final Animation<double> _animation = Tween(
+    begin: 0.0,
+    end: 0.5,
+  ).animate(_animationController);
+
+  @override
+  void initState() {
+    super.initState();
+  }
 
   void _onDismissed(String notification) {
     _notifications.remove(notification);
+    setState(() {});
+  }
+
+  void _onTitleTap() {
+    if (_animationController.isCompleted) {
+      _animationController.reverse();
+    } else {
+      _animationController.forward();
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("All Activity"),
+        title: GestureDetector(
+          onTap: _onTitleTap,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text("All Activity"),
+              Gaps.h2,
+              RotationTransition(
+                turns: _animation,
+                child: FaIcon(
+                  FontAwesomeIcons.chevronDown,
+                  size: Sizes.size14,
+                ),
+              )
+            ],
+          ),
+        ),
       ),
       body: ListView(
         children: [
@@ -42,7 +83,7 @@ class _ActivityScreenState extends State<ActivityScreen> {
           Gaps.v14,
           for (var notification in _notifications)
             Dismissible(
-              key: Key("x"),
+              key: Key(notification),
               onDismissed: (direction) => _onDismissed(notification),
               background: Container(
                 alignment: Alignment.centerLeft,
