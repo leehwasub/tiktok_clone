@@ -47,7 +47,7 @@ class _ActivityScreenState extends State<ActivityScreen>
 
   late final AnimationController _animationController = AnimationController(
     vsync: this,
-    duration: Duration(milliseconds: 1500),
+    duration: Duration(milliseconds: 300),
   );
 
   late final Animation<double> _arrowAnimation = Tween(
@@ -94,6 +94,7 @@ class _ActivityScreenState extends State<ActivityScreen>
           onTap: _toggleAnimations,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisSize: MainAxisSize.min,
             children: [
               Text("All Activity"),
               Gaps.h2,
