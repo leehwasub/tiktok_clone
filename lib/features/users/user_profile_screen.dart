@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../constants/sizes.dart';
+
 class UserProfileScreen extends StatelessWidget {
   const UserProfileScreen({super.key});
 
@@ -33,7 +35,7 @@ class UserProfileScreen extends StatelessWidget {
         ),
         SliverFixedExtentList(
           delegate: SliverChildBuilderDelegate(
-            childCount: 50,
+            childCount: 30,
             (context, index) => Container(
               color: Colors.amber[100 * (index % 9)],
               child: Align(
@@ -43,6 +45,24 @@ class UserProfileScreen extends StatelessWidget {
             ),
           ),
           itemExtent: 100,
+        ),
+        SliverGrid(
+          delegate: SliverChildBuilderDelegate(
+            childCount: 50,
+            (context, index) => Container(
+              color: Colors.blue[100 * (index % 9)],
+              child: Align(
+                alignment: Alignment.center,
+                child: Text("Item $index"),
+              ),
+            ),
+          ),
+          gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+            maxCrossAxisExtent: 100,
+            mainAxisSpacing: Sizes.size20,
+            crossAxisSpacing: Sizes.size20,
+            childAspectRatio: 1,
+          ),
         ),
       ],
     );
