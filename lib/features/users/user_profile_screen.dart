@@ -33,6 +33,17 @@ class UserProfileScreen extends StatelessWidget {
             title: Text("Hello"),
           ),
         ),
+        SliverToBoxAdapter(
+          //Silver에서 일반적인 widget을 그릴때 사용함
+          child: Column(
+            children: [
+              CircleAvatar(
+                backgroundColor: Colors.red,
+                radius: 20,
+              )
+            ],
+          ),
+        ),
         SliverFixedExtentList(
           delegate: SliverChildBuilderDelegate(
             childCount: 30,
@@ -45,6 +56,11 @@ class UserProfileScreen extends StatelessWidget {
             ),
           ),
           itemExtent: 100,
+        ),
+        SliverPersistentHeader(
+          delegate: CustomDelegate(),
+          pinned: true,
+          floating: true,
         ),
         SliverGrid(
           delegate: SliverChildBuilderDelegate(
@@ -66,5 +82,34 @@ class UserProfileScreen extends StatelessWidget {
         ),
       ],
     );
+  }
+}
+
+class CustomDelegate extends SliverPersistentHeaderDelegate {
+  @override
+  Widget build(Object context, double shrinkOffset, bool overlapsContent) {
+    return Container(
+      color: Colors.indigo,
+      child: FractionallySizedBox(
+        heightFactor: 1,
+        child: Center(
+          child: Text(
+            "Title!!!!!!",
+            style: TextStyle(color: Colors.white),
+          ),
+        ),
+      ),
+    );
+  }
+
+  @override
+  double get maxExtent => 150;
+
+  @override
+  double get minExtent => 80;
+
+  @override
+  bool shouldRebuild(covariant SliverPersistentHeaderDelegate oldDelegate) {
+    return false;
   }
 }
