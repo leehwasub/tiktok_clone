@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
+import '../../constants/gaps.dart';
 import '../../constants/sizes.dart';
 
 class UserProfileScreen extends StatelessWidget {
@@ -8,108 +10,116 @@ class UserProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CustomScrollView(
-      physics: BouncingScrollPhysics(),
       slivers: [
         SliverAppBar(
-          snap: true, //조금만 스크롤 내리고 터치를 해제하면 끝까지 내려옴
-          floating: true, // 스크롤 올릴때 끝까지 안올려도 바가내려움
-          stretch:
-              true, //스크롤을 끝까지 올리고나서 밑으로 더끌어당길수있는 옵션. FlexibleSpaceBar로 효과를설정
-          pinned: true, //스크롤을 올렸을때 CollapsedHeight이하로 사라지지않음
-          backgroundColor: Colors.teal,
-          elevation: 1,
-          collapsedHeight: 80,
-          expandedHeight: 200,
-          flexibleSpace: FlexibleSpaceBar(
-            stretchModes: [
-              StretchMode.blurBackground,
-              StretchMode.fadeTitle,
-              StretchMode.zoomBackground,
-            ],
-            background: Image.asset(
-              "assets/images/imageTest.jpg",
-              fit: BoxFit.cover,
+          title: Text("nico"),
+          actions: [
+            IconButton(
+              onPressed: () {},
+              icon: FaIcon(
+                FontAwesomeIcons.gear,
+                size: Sizes.size20,
+              ),
             ),
-            title: Text("Hello"),
-          ),
+          ],
         ),
         SliverToBoxAdapter(
-          //Silver에서 일반적인 widget을 그릴때 사용함
           child: Column(
             children: [
               CircleAvatar(
-                backgroundColor: Colors.red,
-                radius: 20,
-              )
+                radius: 50,
+                foregroundImage: NetworkImage(
+                    "https://avatars.githubusercontent.com/u/3612017"),
+                child: Text("nico"),
+              ),
+              Gaps.v20,
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    "@nico",
+                    style: TextStyle(
+                      fontWeight: FontWeight.w600,
+                      fontSize: Sizes.size18,
+                    ),
+                  ),
+                  Gaps.h5,
+                  FaIcon(
+                    FontAwesomeIcons.solidCircleCheck,
+                    size: Sizes.size16,
+                    color: Colors.blue.shade500,
+                  ),
+                ],
+              ),
+              Gaps.v24,
+              SizedBox(
+                height: Sizes.size60,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    RelationshipDataWidget(
+                      title: "Following",
+                      number: "37",
+                    ),
+                    VerticalDivider(
+                      width: Sizes.size40,
+                      thickness: Sizes.size1,
+                      color: Colors.grey.shade200,
+                      indent: Sizes.size14,
+                      endIndent: Sizes.size14,
+                    ),
+                    RelationshipDataWidget(
+                      title: "Followers",
+                      number: "10.5M",
+                    ),
+                    VerticalDivider(
+                      width: Sizes.size40,
+                      thickness: Sizes.size1,
+                      color: Colors.grey.shade200,
+                      indent: Sizes.size14,
+                      endIndent: Sizes.size14,
+                    ),
+                    RelationshipDataWidget(
+                      title: "Likes",
+                      number: "149.3M",
+                    ),
+                  ],
+                ),
+              ),
             ],
           ),
-        ),
-        SliverFixedExtentList(
-          delegate: SliverChildBuilderDelegate(
-            childCount: 30,
-            (context, index) => Container(
-              color: Colors.amber[100 * (index % 9)],
-              child: Align(
-                alignment: Alignment.center,
-                child: Text("Item $index"),
-              ),
-            ),
-          ),
-          itemExtent: 100,
-        ),
-        SliverPersistentHeader(
-          delegate: CustomDelegate(),
-          pinned: true,
-          floating: true,
-        ),
-        SliverGrid(
-          delegate: SliverChildBuilderDelegate(
-            childCount: 50,
-            (context, index) => Container(
-              color: Colors.blue[100 * (index % 9)],
-              child: Align(
-                alignment: Alignment.center,
-                child: Text("Item $index"),
-              ),
-            ),
-          ),
-          gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-            maxCrossAxisExtent: 100,
-            mainAxisSpacing: Sizes.size20,
-            crossAxisSpacing: Sizes.size20,
-            childAspectRatio: 1,
-          ),
-        ),
+        )
       ],
     );
   }
 }
 
-class CustomDelegate extends SliverPersistentHeaderDelegate {
+class RelationshipDataWidget extends StatelessWidget {
+  final String title;
+  final String number;
+
+  const RelationshipDataWidget(
+      {super.key, required this.title, required this.number});
+
   @override
-  Widget build(Object context, double shrinkOffset, bool overlapsContent) {
-    return Container(
-      color: Colors.indigo,
-      child: FractionallySizedBox(
-        heightFactor: 1,
-        child: Center(
-          child: Text(
-            "Title!!!!!!",
-            style: TextStyle(color: Colors.white),
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Text(
+          number,
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            fontSize: Sizes.size18,
           ),
         ),
-      ),
+        Gaps.v3,
+        Text(
+          title,
+          style: TextStyle(
+            color: Colors.grey,
+          ),
+        ),
+      ],
     );
-  }
-
-  @override
-  double get maxExtent => 150;
-
-  @override
-  double get minExtent => 80;
-
-  @override
-  bool shouldRebuild(covariant SliverPersistentHeaderDelegate oldDelegate) {
-    return false;
   }
 }
