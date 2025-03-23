@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tiktok_clone/features/videos/widgets/video_button.dart';
@@ -40,6 +41,9 @@ class _VideoPostState extends State<VideoPost>
   void _initVideoPlayer() async {
     await _videoPlayerController.initialize();
     await _videoPlayerController.setLooping(true);
+    if (kIsWeb) {
+      await _videoPlayerController.setVolume(0);
+    }
     _videoPlayerController.addListener(_onVideoChange);
     setState(() {});
   }
@@ -99,6 +103,12 @@ class _VideoPostState extends State<VideoPost>
       builder: (context) => VideoComments(),
     );
     _onTogglePause();
+  }
+
+  void _onVolumeTap() {
+    _videoPlayerController
+        .setVolume(_videoPlayerController.value.volume == 0 ? 1 : 0);
+    setState(() {});
   }
 
   @override
@@ -179,6 +189,16 @@ class _VideoPostState extends State<VideoPost>
             right: 10,
             child: Column(
               children: [
+                GestureDetector(
+                  onTap: _onVolumeTap,
+                  child: VideoButton(
+                    icon: _videoPlayerController.value.volume == 1
+                        ? FontAwesomeIcons.volumeHigh
+                        : FontAwesomeIcons.volumeXmark,
+                    text: "Volume",
+                  ),
+                ),
+                Gaps.v16,
                 CircleAvatar(
                   radius: 25,
                   backgroundColor: Colors.black,
