@@ -76,50 +76,56 @@ class _DiscoverScreenState extends State<DiscoverScreen>
       child: Scaffold(
         resizeToAvoidBottomInset: false,
         appBar: AppBar(
-          title: TextField(
-            textInputAction: TextInputAction.search,
-            onChanged: _onSearchTextChanged,
-            onSubmitted: _onSearchTextSubmitted,
-            controller: _textEditingController,
-            decoration: InputDecoration(
-              hintText: "Search",
-              fillColor: Colors.grey.shade200,
-              filled: true,
-              contentPadding: EdgeInsets.all(Sizes.size10),
-              prefixIcon: Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Padding(
-                      padding: EdgeInsets.only(
-                        left: Sizes.size12,
-                      ),
-                      child: FaIcon(FontAwesomeIcons.magnifyingGlass)),
-                ],
-              ),
-              suffixIcon: Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  if (_searchText.isNotEmpty)
-                    GestureDetector(
-                      onTap: _clearSearchText,
-                      child: Padding(
+          title: ConstrainedBox(
+            constraints: BoxConstraints(
+              maxWidth: Breakpoints.sm,
+            ),
+            child: TextField(
+              textInputAction: TextInputAction.search,
+              onChanged: _onSearchTextChanged,
+              onSubmitted: _onSearchTextSubmitted,
+              controller: _textEditingController,
+              decoration: InputDecoration(
+                hintText: "Search",
+                fillColor: Colors.grey.shade200,
+                filled: true,
+                contentPadding: EdgeInsets.all(Sizes.size10),
+                prefixIcon: Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Padding(
                         padding: EdgeInsets.only(
-                          right: Sizes.size16,
+                          left: Sizes.size12,
                         ),
-                        child: FaIcon(FontAwesomeIcons.deleteLeft),
+                        child: FaIcon(FontAwesomeIcons.magnifyingGlass)),
+                  ],
+                ),
+                suffixIcon: Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    if (_searchText.isNotEmpty)
+                      GestureDetector(
+                        onTap: _clearSearchText,
+                        child: Padding(
+                          padding: EdgeInsets.only(
+                            right: Sizes.size16,
+                          ),
+                          child: FaIcon(FontAwesomeIcons.deleteLeft),
+                        ),
                       ),
-                    ),
-                ],
-              ),
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(Sizes.size12),
-                borderSide: BorderSide.none,
+                  ],
+                ),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(Sizes.size12),
+                  borderSide: BorderSide.none,
+                ),
               ),
             ),
           ),
           bottom: TabBar(
+            tabAlignment: TabAlignment.center,
             controller: _tabController,
             splashFactory: NoSplash.splashFactory,
             padding: EdgeInsets.symmetric(
