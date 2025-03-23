@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:tiktok_clone/constants/breakpoints.dart';
 import 'package:tiktok_clone/features/settings/settings_screen.dart';
 import 'package:tiktok_clone/features/users/widgets/persistent_tab_bar.dart';
 
@@ -19,6 +20,7 @@ class UserProfileScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final width = MediaQuery.of(context).size.width;
     return SafeArea(
       child: DefaultTabController(
         length: 2,
@@ -101,68 +103,73 @@ class UserProfileScreen extends StatelessWidget {
                       ),
                     ),
                     Gaps.v14,
-                    FractionallySizedBox(
-                      widthFactor: 0.67,
-                      child: Row(
-                        children: [
-                          Flexible(
-                            flex: 7,
-                            child: Container(
-                              alignment: Alignment.center,
-                              height: Sizes.size48,
-                              width: double.infinity,
-                              decoration: BoxDecoration(
-                                color: Theme.of(context).primaryColor,
-                                borderRadius:
-                                    BorderRadius.circular(Sizes.size3),
-                              ),
-                              child: Text(
-                                'Follow',
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.w600,
+                    ConstrainedBox(
+                      constraints: BoxConstraints(
+                        maxWidth: Breakpoints.sm,
+                      ),
+                      child: FractionallySizedBox(
+                        widthFactor: 0.67,
+                        child: Row(
+                          children: [
+                            Flexible(
+                              flex: 7,
+                              child: Container(
+                                alignment: Alignment.center,
+                                height: Sizes.size48,
+                                width: double.infinity,
+                                decoration: BoxDecoration(
+                                  color: Theme.of(context).primaryColor,
+                                  borderRadius:
+                                      BorderRadius.circular(Sizes.size3),
                                 ),
-                                textAlign: TextAlign.center,
+                                child: Text(
+                                  'Follow',
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                                  textAlign: TextAlign.center,
+                                ),
                               ),
                             ),
-                          ),
-                          Gaps.h6,
-                          Flexible(
-                            flex: 2,
-                            child: Container(
-                              height: Sizes.size48,
-                              alignment: Alignment.center,
-                              width: double.infinity,
-                              decoration: BoxDecoration(
-                                color: Colors.white,
-                                borderRadius:
-                                    BorderRadius.circular(Sizes.size3),
-                                border: Border.all(
-                                    color: Colors.grey.shade300,
-                                    width: Sizes.size1),
+                            Gaps.h6,
+                            Flexible(
+                              flex: 2,
+                              child: Container(
+                                height: Sizes.size48,
+                                alignment: Alignment.center,
+                                width: double.infinity,
+                                decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius:
+                                      BorderRadius.circular(Sizes.size3),
+                                  border: Border.all(
+                                      color: Colors.grey.shade300,
+                                      width: Sizes.size1),
+                                ),
+                                child: FaIcon(FontAwesomeIcons.youtube),
                               ),
-                              child: FaIcon(FontAwesomeIcons.youtube),
                             ),
-                          ),
-                          Gaps.h6,
-                          Flexible(
-                            flex: 2,
-                            child: Container(
-                              height: Sizes.size48,
-                              alignment: Alignment.center,
-                              width: double.infinity,
-                              decoration: BoxDecoration(
-                                color: Colors.white,
-                                borderRadius:
-                                    BorderRadius.circular(Sizes.size3),
-                                border: Border.all(
-                                    color: Colors.grey.shade300,
-                                    width: Sizes.size1),
+                            Gaps.h6,
+                            Flexible(
+                              flex: 2,
+                              child: Container(
+                                height: Sizes.size48,
+                                alignment: Alignment.center,
+                                width: double.infinity,
+                                decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius:
+                                      BorderRadius.circular(Sizes.size3),
+                                  border: Border.all(
+                                      color: Colors.grey.shade300,
+                                      width: Sizes.size1),
+                                ),
+                                child: FaIcon(FontAwesomeIcons.arrowDown),
                               ),
-                              child: FaIcon(FontAwesomeIcons.arrowDown),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     ),
                     Gaps.v14,
@@ -203,13 +210,12 @@ class UserProfileScreen extends StatelessWidget {
           body: TabBarView(
             children: [
               GridView.builder(
-                physics: NeverScrollableScrollPhysics(),
                 keyboardDismissBehavior:
                     ScrollViewKeyboardDismissBehavior.onDrag,
                 itemCount: 20,
                 padding: EdgeInsets.zero,
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 3,
+                  crossAxisCount: width > Breakpoints.xl ? 5 : 3,
                   crossAxisSpacing: Sizes.size2,
                   mainAxisSpacing: Sizes.size2,
                   childAspectRatio: 9 / 14,
