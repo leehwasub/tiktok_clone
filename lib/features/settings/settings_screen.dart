@@ -6,40 +6,27 @@ class SettingsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Settings"),
-      ),
-      body: ListWheelScrollView(
-        diameterRatio: 3,
-        useMagnifier: true,
-        magnification: 1.5,
-        offAxisFraction: -2,
-        itemExtent: 200,
-        children: [
-          for (var x in [
-            12,
-            3,
-            4,
-            4,
-            5,
-            5,
-            6,
-            7,
-            7,
-          ])
-            FractionallySizedBox(
-              widthFactor: 1,
-              child: Container(
-                color: Colors.teal,
-                alignment: Alignment.center,
-                child: Text(
-                  "Pick me",
-                  style: TextStyle(color: Colors.white, fontSize: 39),
+        appBar: AppBar(
+          title: Text("Settings"),
+        ),
+        body: ListView(
+          children: [
+            ListTile(
+              onTap: () => showAboutDialog(
+                  context: context,
+                  applicationVersion: "1.0",
+                  applicationLegalese:
+                      "All rights resevered. Please dont copy me"),
+              title: Text(
+                "About",
+                style: TextStyle(
+                  fontWeight: FontWeight.w600,
                 ),
               ),
-            )
-        ],
-      ),
-    );
+              subtitle: Text("About this app...."),
+            ),
+            AboutListTile(),
+          ],
+        ));
   }
 }
