@@ -132,6 +132,31 @@ class _SettingsScreenState extends State<SettingsScreen> {
             title: Text("Log out (Android)"),
             textColor: Colors.red,
           ),
+          ListTile(
+            onTap: () {
+              showCupertinoModalPopup(
+                context: context,
+                builder: (context) => CupertinoActionSheet(
+                  title: Text("Are you Sure?"),
+                  message: Text("Please dont gooooo"),
+                  actions: [
+                    CupertinoActionSheetAction(
+                      isDefaultAction: true,
+                      onPressed: () => Navigator.of(context).pop(),
+                      child: Text("Not Log out"),
+                    ),
+                    CupertinoActionSheetAction(
+                      isDestructiveAction: true,
+                      onPressed: () => Navigator.of(context).pop(),
+                      child: Text("YEs Plz"),
+                    ),
+                  ],
+                ),
+              );
+            },
+            title: Text("Log out (IOS/Bottom)"),
+            textColor: Colors.red,
+          ),
           AboutListTile(),
         ],
       ),
