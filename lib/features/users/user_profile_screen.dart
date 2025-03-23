@@ -93,25 +93,67 @@ class UserProfileScreen extends StatelessWidget {
                     ),
                     Gaps.v14,
                     FractionallySizedBox(
-                      widthFactor: 0.33,
-                      child: Container(
-                        padding: EdgeInsets.symmetric(
-                          vertical: Sizes.size12,
-                        ),
-                        decoration: BoxDecoration(
-                          color: Theme.of(context).primaryColor,
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(Sizes.size4),
+                      widthFactor: 0.67,
+                      child: Row(
+                        children: [
+                          Flexible(
+                            flex: 7,
+                            child: Container(
+                              alignment: Alignment.center,
+                              height: Sizes.size48,
+                              width: double.infinity,
+                              decoration: BoxDecoration(
+                                color: Theme.of(context).primaryColor,
+                                borderRadius:
+                                    BorderRadius.circular(Sizes.size3),
+                              ),
+                              child: Text(
+                                'Follow',
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                                textAlign: TextAlign.center,
+                              ),
+                            ),
                           ),
-                        ),
-                        child: Text(
-                          "Follow",
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.w600,
+                          Gaps.h6,
+                          Flexible(
+                            flex: 2,
+                            child: Container(
+                              height: Sizes.size48,
+                              alignment: Alignment.center,
+                              width: double.infinity,
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius:
+                                    BorderRadius.circular(Sizes.size3),
+                                border: Border.all(
+                                    color: Colors.grey.shade300,
+                                    width: Sizes.size1),
+                              ),
+                              child: FaIcon(FontAwesomeIcons.youtube),
+                            ),
                           ),
-                          textAlign: TextAlign.center,
-                        ),
+                          Gaps.h6,
+                          Flexible(
+                            flex: 2,
+                            child: Container(
+                              height: Sizes.size48,
+                              alignment: Alignment.center,
+                              width: double.infinity,
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius:
+                                    BorderRadius.circular(Sizes.size3),
+                                border: Border.all(
+                                    color: Colors.grey.shade300,
+                                    width: Sizes.size1),
+                              ),
+                              child: FaIcon(FontAwesomeIcons.arrowDown),
+                            ),
+                          ),
+                        ],
                       ),
                     ),
                     Gaps.v14,
@@ -163,7 +205,7 @@ class UserProfileScreen extends StatelessWidget {
                   mainAxisSpacing: Sizes.size2,
                   childAspectRatio: 9 / 14,
                 ),
-                itemBuilder: (context, index) => Column(
+                itemBuilder: (context, index) => Stack(
                   children: [
                     AspectRatio(
                       aspectRatio: 9 / 14,
@@ -173,6 +215,43 @@ class UserProfileScreen extends StatelessWidget {
                           image:
                               "https://images.unsplash.com/photo-1673844969019-c99b0c933e90?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1480&q=80"),
                     ),
+                    Positioned(
+                      bottom: Sizes.size2,
+                      left: Sizes.size5,
+                      child: Row(
+                        children: [
+                          FaIcon(
+                            FontAwesomeIcons.play,
+                            size: Sizes.size14,
+                            color: Colors.white,
+                          ),
+                          Gaps.h4,
+                          Text(
+                            "4.1M",
+                            style: TextStyle(color: Colors.white),
+                          ),
+                        ],
+                      ),
+                    ),
+                    if (index % 5 == 0)
+                      Positioned(
+                        top: Sizes.size5,
+                        left: Sizes.size5,
+                        child: Container(
+                          padding: EdgeInsets.symmetric(
+                            horizontal: Sizes.size6,
+                            vertical: Sizes.size2,
+                          ),
+                          decoration: BoxDecoration(
+                            color: Theme.of(context).primaryColor,
+                            borderRadius: BorderRadius.circular(Sizes.size3),
+                          ),
+                          child: Text(
+                            "Pinned",
+                            style: TextStyle(color: Colors.white),
+                          ),
+                        ),
+                      ),
                   ],
                 ),
               ),
