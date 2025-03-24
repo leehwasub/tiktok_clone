@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:tiktok_clone/features/authentication/sign_up_screen.dart';
 import 'package:tiktok_clone/features/inbox/activity_screen.dart';
 import 'package:tiktok_clone/features/main_navigation/main_navigation_screen.dart';
@@ -33,6 +34,13 @@ class TikTokApp extends StatelessWidget {
       theme: ThemeData(
         primaryColor: Color(0xFFE9435A),
         brightness: Brightness.light,
+        textTheme: TextTheme(
+          headlineLarge: TextStyle(
+            fontSize: Sizes.size24,
+            fontWeight: FontWeight.w700,
+            color: Colors.black,
+          ),
+        ),
         scaffoldBackgroundColor: Colors.white,
         bottomAppBarTheme: BottomAppBarTheme(
           surfaceTintColor: Colors.grey.shade50,
@@ -59,6 +67,12 @@ class TikTokApp extends StatelessWidget {
         scaffoldBackgroundColor: Colors.black,
         primaryColor: Color(0xFFE9435A),
         brightness: Brightness.dark,
+        textTheme: TextTheme(
+          headlineLarge: TextStyle(
+            fontSize: Sizes.size24,
+            fontWeight: FontWeight.w700,
+          ),
+        ),
         bottomAppBarTheme: BottomAppBarTheme(
           surfaceTintColor: Colors.grey.shade900,
         ),
