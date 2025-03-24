@@ -67,11 +67,8 @@ class TikTokApp extends StatelessWidget {
         scaffoldBackgroundColor: Colors.black,
         primaryColor: Color(0xFFE9435A),
         brightness: Brightness.dark,
-        textTheme: TextTheme(
-          headlineLarge: TextStyle(
-            fontSize: Sizes.size24,
-            fontWeight: FontWeight.w700,
-          ),
+        textTheme: GoogleFonts.itimTextTheme(
+          ThemeData(brightness: Brightness.dark).textTheme,
         ),
         bottomAppBarTheme: BottomAppBarTheme(
           surfaceTintColor: Colors.grey.shade900,
