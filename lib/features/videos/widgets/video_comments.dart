@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:tiktok_clone/utils.dart';
 
 import '../../../constants/gaps.dart';
 import '../../../constants/sizes.dart';
@@ -41,9 +42,9 @@ class _VideoCommentsState extends State<VideoComments> {
         borderRadius: BorderRadius.circular(Sizes.size14),
       ),
       child: Scaffold(
-        backgroundColor: Colors.grey.shade50,
+        backgroundColor: isDarkMode(context) ? null : Colors.grey.shade50,
         appBar: AppBar(
-          backgroundColor: Colors.grey.shade50,
+          backgroundColor: isDarkMode(context) ? null : Colors.grey.shade50,
           automaticallyImplyLeading: false,
           title: Text("22796 comments"),
           actions: [
@@ -120,7 +121,6 @@ class _VideoCommentsState extends State<VideoComments> {
                   bottom: 0,
                   width: constraints.maxWidth,
                   child: BottomAppBar(
-                    color: Colors.white,
                     child: Row(
                       children: [
                         CircleAvatar(
@@ -148,7 +148,9 @@ class _VideoCommentsState extends State<VideoComments> {
                                   borderSide: BorderSide.none,
                                 ),
                                 filled: true,
-                                fillColor: Colors.grey.shade200,
+                                fillColor: isDarkMode(context)
+                                    ? Colors.grey.shade800
+                                    : Colors.grey.shade200,
                                 contentPadding: EdgeInsets.symmetric(
                                   horizontal: Sizes.size12,
                                   vertical: Sizes.size10,
@@ -162,17 +164,23 @@ class _VideoCommentsState extends State<VideoComments> {
                                     children: [
                                       Icon(
                                         FontAwesomeIcons.at,
-                                        color: Colors.grey.shade900,
+                                        color: isDarkMode(context)
+                                            ? Colors.white
+                                            : Colors.grey.shade900,
                                       ),
                                       Gaps.h14,
                                       Icon(
                                         FontAwesomeIcons.gift,
-                                        color: Colors.grey.shade900,
+                                        color: isDarkMode(context)
+                                            ? Colors.white
+                                            : Colors.grey.shade900,
                                       ),
                                       Gaps.h14,
                                       Icon(
                                         FontAwesomeIcons.faceSmile,
-                                        color: Colors.grey.shade900,
+                                        color: isDarkMode(context)
+                                            ? Colors.white
+                                            : Colors.grey.shade900,
                                       ),
                                       Gaps.h14,
                                       if (_isWriting)
