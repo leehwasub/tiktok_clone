@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:tiktok_clone/features/authentication/sign_up_screen.dart';
-import 'package:tiktok_clone/features/inbox/activity_screen.dart';
 import 'package:tiktok_clone/features/main_navigation/main_navigation_screen.dart';
 
 import 'constants/sizes.dart';
@@ -30,8 +29,18 @@ class TikTokApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Tiktok Clone',
+      localizationsDelegates: [
+        GlobalMaterialLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+      ],
+      supportedLocales: [
+        Locale("en"),
+        Locale("ko"),
+      ],
       themeMode: ThemeMode.system,
       theme: ThemeData(
+        useMaterial3: true,
         primaryColor: Color(0xFFE9435A),
         brightness: Brightness.light,
         textTheme: Typography.blackMountainView,
@@ -66,6 +75,7 @@ class TikTokApp extends StatelessWidget {
         ),
       ),
       darkTheme: ThemeData(
+        useMaterial3: true,
         textSelectionTheme: TextSelectionThemeData(
           cursorColor: Color(0xFFE9435A),
         ),
