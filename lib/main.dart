@@ -34,13 +34,7 @@ class TikTokApp extends StatelessWidget {
       theme: ThemeData(
         primaryColor: Color(0xFFE9435A),
         brightness: Brightness.light,
-        textTheme: TextTheme(
-          headlineLarge: TextStyle(
-            fontSize: Sizes.size24,
-            fontWeight: FontWeight.w700,
-            color: Colors.black,
-          ),
-        ),
+        textTheme: Typography.blackMountainView,
         scaffoldBackgroundColor: Colors.white,
         bottomAppBarTheme: BottomAppBarTheme(
           surfaceTintColor: Colors.grey.shade50,
@@ -62,19 +56,33 @@ class TikTokApp extends StatelessWidget {
             fontWeight: FontWeight.w600,
           ),
         ),
+        tabBarTheme: TabBarTheme(
+          labelColor: Colors.black,
+          unselectedLabelColor: Colors.grey.shade500,
+          indicatorColor: Colors.black,
+        ),
       ),
       darkTheme: ThemeData(
+        textSelectionTheme: TextSelectionThemeData(
+          cursorColor: Color(0xFFE9435A),
+        ),
         scaffoldBackgroundColor: Colors.black,
         primaryColor: Color(0xFFE9435A),
         brightness: Brightness.dark,
-        textTheme: GoogleFonts.itimTextTheme(
-          ThemeData(brightness: Brightness.dark).textTheme,
-        ),
+        textTheme: Typography.whiteMountainView,
         bottomAppBarTheme: BottomAppBarTheme(
           surfaceTintColor: Colors.grey.shade900,
         ),
+        appBarTheme: AppBarTheme(
+          backgroundColor: Colors.grey.shade900,
+        ),
+        tabBarTheme: TabBarTheme(
+          labelColor: Colors.white,
+          unselectedLabelColor: Colors.grey.shade500,
+          indicatorColor: Colors.white,
+        ),
       ),
-      home: SignUpScreen(),
+      home: MainNavigationScreen(),
     );
   }
 }
