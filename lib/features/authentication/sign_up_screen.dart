@@ -56,7 +56,7 @@ class SignUpScreen extends StatelessWidget {
                   ),
                   Gaps.v20,
                   Text(
-                    S.of(context).signUpSubtitle,
+                    S.of(context).signUpSubtitle(0),
                     style: TextStyle(
                       fontSize: Sizes.size16,
                       color: isDarkMode(context)
@@ -115,7 +115,7 @@ class SignUpScreen extends StatelessWidget {
                 GestureDetector(
                   onTap: () => _onLoginTap(context),
                   child: Text(
-                    S.of(context).LogIn,
+                    S.of(context).LogIn("female1212"),
                     style: TextStyle(
                         fontWeight: FontWeight.w600,
                         color: Theme.of(context).primaryColor),
