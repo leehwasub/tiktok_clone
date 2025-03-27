@@ -1,0 +1,8 @@
+{
+  "signUpTitle": "{nameOfTheApp} 회원가입",
+  "signUpSubtitle": "Create a profile, follow other accounts, make your own videos, and more.",
+  "emailPasswordButton": "Use email & password",
+  "appleButton": "Continue with Apple",
+  "alreadyHaveAnAccount": "Already have an account?",
+  "LogIn": "Log in"
+}
