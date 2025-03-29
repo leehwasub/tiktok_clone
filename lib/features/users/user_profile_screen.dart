@@ -8,7 +8,8 @@ import '../../constants/gaps.dart';
 import '../../constants/sizes.dart';
 
 class UserProfileScreen extends StatelessWidget {
-  const UserProfileScreen({super.key});
+  final String username;
+  const UserProfileScreen({super.key, required this.username});
 
   void _onGearPressed(BuildContext context) {
     Navigator.of(context).push(
@@ -31,7 +32,7 @@ class UserProfileScreen extends StatelessWidget {
               return [
                 SliverAppBar(
                   centerTitle: true,
-                  title: Text("nico"),
+                  title: Text(username),
                   actions: [
                     IconButton(
                       onPressed: () => _onGearPressed(context),
@@ -50,14 +51,14 @@ class UserProfileScreen extends StatelessWidget {
                         radius: 50,
                         foregroundImage: NetworkImage(
                             "https://avatars.githubusercontent.com/u/3612017"),
-                        child: Text("nico"),
+                        child: Text(username),
                       ),
                       Gaps.v20,
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
-                            "@nico",
+                            "@$username",
                             style: TextStyle(
                               fontWeight: FontWeight.w600,
                               fontSize: Sizes.size18,
