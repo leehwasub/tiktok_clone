@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:tiktok_clone/generated/l10n.dart';
 import 'package:tiktok_clone/utils.dart';
 
 import '../../../constants/gaps.dart';
@@ -46,7 +47,7 @@ class _VideoCommentsState extends State<VideoComments> {
         appBar: AppBar(
           backgroundColor: isDarkMode(context) ? null : Colors.grey.shade50,
           automaticallyImplyLeading: false,
-          title: Text("22796 comments"),
+          title: Text(S.of(context).commentTitle(22796)),
           actions: [
             IconButton(
               onPressed: _onClosePressed,

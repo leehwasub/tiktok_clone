@@ -22,10 +22,17 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static String m0(gender) => "Log in";
 
-  static String m2(videoCount) =>
+  static String m1(value) => "${value}";
+
+  static String m2(value) =>
+      "${Intl.plural(value, one: '${value} comment', other: '${value} comments')}";
+
+  static String m3(value) => "${value}";
+
+  static String m5(videoCount) =>
       "Create a profile, follow other accounts, make your own videos, and more.";
 
-  static String m3(nameOfTheApp) => "${nameOfTheApp} 회원가입";
+  static String m6(nameOfTheApp) => "${nameOfTheApp} 회원가입";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
@@ -34,10 +41,13 @@ class MessageLookup extends MessageLookupByLibrary {
       "Already have an account?",
     ),
     "appleButton": MessageLookupByLibrary.simpleMessage("Continue with Apple"),
+    "commentCount": m1,
+    "commentTitle": m2,
     "emailPasswordButton": MessageLookupByLibrary.simpleMessage(
       "Use email & password",
     ),
-    "signUpSubtitle": m2,
-    "signUpTitle": m3,
+    "likeCount": m3,
+    "signUpSubtitle": m5,
+    "signUpTitle": m6,
   };
 }
