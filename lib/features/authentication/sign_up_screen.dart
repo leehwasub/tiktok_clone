@@ -11,18 +11,17 @@ import '../../constants/sizes.dart';
 import '../../generated/l10n.dart';
 
 class SignUpScreen extends StatelessWidget {
+  static String routeName = "/";
   const SignUpScreen({super.key});
 
   void _onLoginTap(BuildContext context) async {
-    final result = await Navigator.of(context).push(
-      MaterialPageRoute(
-        builder: (context) => LoginScreen(),
-      ),
-    );
-    print("user came back");
+    final result = await Navigator.of(context).pushNamed(LoginScreen.routeName);
+    print(result);
   }
 
   void _onEmailTap(BuildContext context) {
+    Navigator.of(context).pushNamed(UsernameScreen.routeName);
+    /*
     Navigator.of(context).push(
       PageRouteBuilder(
         transitionDuration: Duration(
@@ -52,6 +51,7 @@ class SignUpScreen extends StatelessWidget {
         },
       ),
     );
+    */
   }
 
   void _onAppleTap(BuildContext context) {}
