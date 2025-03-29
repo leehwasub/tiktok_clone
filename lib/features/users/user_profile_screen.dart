@@ -9,7 +9,12 @@ import '../../constants/sizes.dart';
 
 class UserProfileScreen extends StatelessWidget {
   final String username;
-  const UserProfileScreen({super.key, required this.username});
+  final String tab;
+  const UserProfileScreen({
+    super.key,
+    required this.username,
+    required this.tab,
+  });
 
   void _onGearPressed(BuildContext context) {
     Navigator.of(context).push(
@@ -21,11 +26,13 @@ class UserProfileScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print(tab);
     final width = MediaQuery.of(context).size.width;
     return Scaffold(
       backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
       body: SafeArea(
         child: DefaultTabController(
+          initialIndex: tab == "likes" ? 1 : 0,
           length: 2,
           child: NestedScrollView(
             headerSliverBuilder: (context, innerBoxIsScrolled) {
