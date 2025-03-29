@@ -98,7 +98,7 @@ class TikTokApp extends StatelessWidget {
           indicatorColor: Colors.white,
         ),
       ),
-      home: MainNavigationScreen(),
+      home: SignUpScreen(),
     );
   }
 }
