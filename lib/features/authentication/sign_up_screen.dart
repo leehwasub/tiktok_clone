@@ -13,12 +13,13 @@ import '../../generated/l10n.dart';
 class SignUpScreen extends StatelessWidget {
   const SignUpScreen({super.key});
 
-  void _onLoginTap(BuildContext context) {
-    Navigator.of(context).push(
+  void _onLoginTap(BuildContext context) async {
+    final result = await Navigator.of(context).push(
       MaterialPageRoute(
         builder: (context) => LoginScreen(),
       ),
     );
+    print("user came back");
   }
 
   void _onEmailTap(BuildContext context) {
@@ -46,7 +47,7 @@ class SignUpScreen extends StatelessWidget {
                 children: [
                   Gaps.v80,
                   Text(
-                    S.of(context).signUpTitle("TikTok", DateTime.now()),
+                    S.of(context).signUpTitle("TikTok"),
                     style: GoogleFonts.abrilFatface(
                       textStyle: TextStyle(
                         fontSize: Sizes.size24,
