@@ -6,7 +6,7 @@ import 'package:tiktok_clone/features/users/user_profile_screen.dart';
 import 'package:tiktok_clone/features/videos/video_timeline_screen.dart';
 import 'package:tiktok_clone/utils.dart';
 
-import '../../constants/gaps.dart';
+import '../../../constants/gaps.dart';
 import 'widgets/nav_tab.dart';
 import 'widgets/post_video_button.dart';
 
