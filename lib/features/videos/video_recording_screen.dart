@@ -130,8 +130,7 @@ class _VideoRecordingScreenState extends State<VideoRecordingScreen>
 
     final file = await _cameraController.stopVideoRecording();
 
-    print(file.name);
-    print(file.path);
+    if (!mounted) return;
 
     Navigator.push(
       context,
