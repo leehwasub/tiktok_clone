@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:tiktok_clone/constants/gaps.dart';
 import 'package:tiktok_clone/constants/sizes.dart';
+import 'package:tiktok_clone/features/videos/video_preview_screen.dart';
 
 class VideoRecordingScreen extends StatefulWidget {
   const VideoRecordingScreen({super.key});
@@ -52,6 +53,7 @@ class _VideoRecordingScreenState extends State<VideoRecordingScreen>
         cameras[_isSelfieMode ? 1 : 0], ResolutionPreset.ultraHigh);
 
     await _cameraController.initialize();
+    await _cameraController.prepareForVideoRecording(); // only for IOS
 
     _flashMode = _cameraController.value.flashMode;
   }
@@ -92,6 +94,14 @@ class _VideoRecordingScreenState extends State<VideoRecordingScreen>
     );
   }
 
+  @override
+  void dispose() {
+    _buttonAnimationController.dispose();
+    _cameraController.dispose();
+    _progressAnimationController.dispose();
+    super.dispose();
+  }
+
   Future<void> _toggleSelfieMode() async {
     _isSelfieMode = !_isSelfieMode;
     await initCamera();
@@ -104,16 +114,31 @@ class _VideoRecordingScreenState extends State<VideoRecordingScreen>
     setState(() {});
   }
 
-  void _startRecording(TapDownDetails tapDownDetails) {
+  Future<void> _startRecording(TapDownDetails tapDownDetails) async {
+    if (_cameraController.value.isRecordingVideo) return;
+
+    await _cameraController.startVideoRecording();
     _buttonAnimationController.forward();
     _progressAnimationController.forward();
-    print("Start Recording");
   }
 
-  void _stopRecording() {
+  Future<void> _stopRecording() async {
+    if (!_cameraController.value.isRecordingVideo) return;
+
     _buttonAnimationController.reverse();
     _progressAnimationController.reset();
-    print("Stop Recording");
+
+    final file = await _cameraController.stopVideoRecording();
+
+    print(file.name);
+    print(file.path);
+
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => VideoPreviewScreen(video: file),
+      ),
+    );
   }
 
   @override
