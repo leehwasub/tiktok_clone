@@ -203,6 +203,13 @@ class _VideoRecordingScreenState extends State<VideoRecordingScreen>
                 children: [
                   CameraPreview(_cameraController),
                   Positioned(
+                    top: Sizes.size40,
+                    left: Sizes.size20,
+                    child: CloseButton(
+                      color: Colors.white,
+                    ),
+                  ),
+                  Positioned(
                     top: Sizes.size20,
                     right: Sizes.size20,
                     child: Column(
