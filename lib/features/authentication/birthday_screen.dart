@@ -34,7 +34,7 @@ class _BirthdayScreenState extends State<BirthdayScreen> {
 
   void _onNextTap() {
     //이전화면을 제거하기때문에 못돌아감
-    context.pushReplacementNamed(InterestsScreen.routeName);
+    context.goNamed(InterestsScreen.routeName);
   }
 
   void _setTextFieldDate(DateTime date) {
