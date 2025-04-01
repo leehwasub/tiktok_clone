@@ -46,6 +46,7 @@ dependencies:
   permission_handler: ^11.4.0
   image_picker: 0.8.6+1
   provider: 6.0.5
+  shared_preferences: ^2.5.3
 
 dev_dependencies:
   flutter_test:
