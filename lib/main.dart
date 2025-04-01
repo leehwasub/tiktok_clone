@@ -27,77 +27,75 @@ class TikTokApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return VideoConfig(
-      child: MaterialApp.router(
-        routerConfig: router,
-        debugShowCheckedModeBanner: false,
-        title: 'Tiktok Clone',
-        localizationsDelegates: [
-          S.delegate,
-          GlobalWidgetsLocalizations.delegate,
-          GlobalCupertinoLocalizations.delegate,
-          GlobalMaterialLocalizations.delegate,
-        ],
-        supportedLocales: [
-          Locale('en'),
-          Locale('ko'),
-        ],
-        themeMode: ThemeMode.system,
-        theme: ThemeData(
-          useMaterial3: true,
-          primaryColor: Color(0xFFE9435A),
-          brightness: Brightness.light,
-          textTheme: Typography.blackMountainView,
-          scaffoldBackgroundColor: Colors.white,
-          bottomAppBarTheme: BottomAppBarTheme(
-            surfaceTintColor: Colors.grey.shade50,
-          ),
-          textSelectionTheme: TextSelectionThemeData(
-            cursorColor: Color(0xFFE9435A),
-          ),
-          //클릭시 효과 제거
-          splashColor: Colors.transparent,
-          highlightColor: Colors.transparent,
-          appBarTheme: AppBarTheme(
-            backgroundColor: Colors.white,
-            foregroundColor: Colors.black,
-            centerTitle: true,
-            elevation: 0,
-            titleTextStyle: TextStyle(
-              color: Colors.black,
-              fontSize: Sizes.size16 + Sizes.size2,
-              fontWeight: FontWeight.w600,
-            ),
-          ),
-          tabBarTheme: TabBarTheme(
-            labelColor: Colors.black,
-            unselectedLabelColor: Colors.grey.shade500,
-            indicatorColor: Colors.black,
-          ),
-          listTileTheme: ListTileThemeData(
-            iconColor: Colors.black,
+    return MaterialApp.router(
+      routerConfig: router,
+      debugShowCheckedModeBanner: false,
+      title: 'Tiktok Clone',
+      localizationsDelegates: [
+        S.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+        GlobalMaterialLocalizations.delegate,
+      ],
+      supportedLocales: [
+        Locale('en'),
+        Locale('ko'),
+      ],
+      themeMode: ThemeMode.system,
+      theme: ThemeData(
+        useMaterial3: true,
+        primaryColor: Color(0xFFE9435A),
+        brightness: Brightness.light,
+        textTheme: Typography.blackMountainView,
+        scaffoldBackgroundColor: Colors.white,
+        bottomAppBarTheme: BottomAppBarTheme(
+          surfaceTintColor: Colors.grey.shade50,
+        ),
+        textSelectionTheme: TextSelectionThemeData(
+          cursorColor: Color(0xFFE9435A),
+        ),
+        //클릭시 효과 제거
+        splashColor: Colors.transparent,
+        highlightColor: Colors.transparent,
+        appBarTheme: AppBarTheme(
+          backgroundColor: Colors.white,
+          foregroundColor: Colors.black,
+          centerTitle: true,
+          elevation: 0,
+          titleTextStyle: TextStyle(
+            color: Colors.black,
+            fontSize: Sizes.size16 + Sizes.size2,
+            fontWeight: FontWeight.w600,
           ),
         ),
-        darkTheme: ThemeData(
-          useMaterial3: true,
-          textSelectionTheme: TextSelectionThemeData(
-            cursorColor: Color(0xFFE9435A),
-          ),
-          scaffoldBackgroundColor: Colors.black,
-          primaryColor: Color(0xFFE9435A),
-          brightness: Brightness.dark,
-          textTheme: Typography.whiteMountainView,
-          bottomAppBarTheme: BottomAppBarTheme(
-            surfaceTintColor: Colors.grey.shade900,
-          ),
-          appBarTheme: AppBarTheme(
-            backgroundColor: Colors.grey.shade900,
-          ),
-          tabBarTheme: TabBarTheme(
-            labelColor: Colors.white,
-            unselectedLabelColor: Colors.grey.shade500,
-            indicatorColor: Colors.white,
-          ),
+        tabBarTheme: TabBarTheme(
+          labelColor: Colors.black,
+          unselectedLabelColor: Colors.grey.shade500,
+          indicatorColor: Colors.black,
+        ),
+        listTileTheme: ListTileThemeData(
+          iconColor: Colors.black,
+        ),
+      ),
+      darkTheme: ThemeData(
+        useMaterial3: true,
+        textSelectionTheme: TextSelectionThemeData(
+          cursorColor: Color(0xFFE9435A),
+        ),
+        scaffoldBackgroundColor: Colors.black,
+        primaryColor: Color(0xFFE9435A),
+        brightness: Brightness.dark,
+        textTheme: Typography.whiteMountainView,
+        bottomAppBarTheme: BottomAppBarTheme(
+          surfaceTintColor: Colors.grey.shade900,
+        ),
+        appBarTheme: AppBarTheme(
+          backgroundColor: Colors.grey.shade900,
+        ),
+        tabBarTheme: TabBarTheme(
+          labelColor: Colors.white,
+          unselectedLabelColor: Colors.grey.shade500,
+          indicatorColor: Colors.white,
         ),
       ),
     );
