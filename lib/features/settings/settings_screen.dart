@@ -52,17 +52,14 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 SwitchListTile.adaptive(
                   title: Text("Mute video"),
                   subtitle: Text("Videos will be muted by default."),
-                  value: context.watch<PlaybackConfigViewModel>().muted,
-                  onChanged: (value) =>
-                      context.read<PlaybackConfigViewModel>().setMuted(value),
+                  value: false,
+                  onChanged: (value) => {},
                 ),
                 SwitchListTile.adaptive(
                   title: Text("Autoplay"),
                   subtitle: Text("Videos will be muted by default."),
-                  value: context.watch<PlaybackConfigViewModel>().autoplay,
-                  onChanged: (value) => context
-                      .read<PlaybackConfigViewModel>()
-                      .setAutoplay(value),
+                  value: false,
+                  onChanged: (value) => {},
                 ),
                 SwitchListTile.adaptive(
                   title: Text("Enable Notirications"),
