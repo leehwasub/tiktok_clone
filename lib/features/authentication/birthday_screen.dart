@@ -1,20 +1,22 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:tiktok_clone/features/authentication/view_models/signup_view_model.dart';
 
 import '../../constants/gaps.dart';
 import '../../constants/sizes.dart';
 import '../onboarding/interests_screen.dart';
 import 'widgets/form_button.dart';
 
-class BirthdayScreen extends StatefulWidget {
+class BirthdayScreen extends ConsumerStatefulWidget {
   const BirthdayScreen({super.key});
 
   @override
-  State<BirthdayScreen> createState() => _BirthdayScreenState();
+  BirthdayScreenState createState() => BirthdayScreenState();
 }
 
-class _BirthdayScreenState extends State<BirthdayScreen> {
+class BirthdayScreenState extends ConsumerState<BirthdayScreen> {
   final TextEditingController _birthdayController = TextEditingController();
 
   DateTime initialDate = DateTime(
@@ -34,7 +36,8 @@ class _BirthdayScreenState extends State<BirthdayScreen> {
 
   void _onNextTap() {
     //이전화면을 제거하기때문에 못돌아감
-    context.goNamed(InterestsScreen.routeName);
+    //context.goNamed(InterestsScreen.routeName);
+    ref.read(signUpProvider.notifier).signUp();
   }
 
   void _setTextFieldDate(DateTime date) {
@@ -86,7 +89,7 @@ class _BirthdayScreenState extends State<BirthdayScreen> {
             Gaps.v16,
             GestureDetector(
               onTap: _onNextTap,
-              child: FormButton(disabled: false),
+              child: FormButton(disabled: ref.watch(signUpProvider).isLoading),
             ),
           ],
         ),
