@@ -19,6 +19,13 @@ class AuthenticationRepositiory {
   Future<void> signOut() async {
     await _firebaseAuth.signOut();
   }
+
+  Future<void> signIn(String email, String password) async {
+    await _firebaseAuth.signInWithEmailAndPassword(
+      email: email,
+      password: password,
+    );
+  }
 }
 
 final authRepo = Provider(

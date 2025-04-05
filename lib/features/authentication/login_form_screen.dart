@@ -1,19 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:tiktok_clone/features/authentication/view_models/login_view_model.dart';
 import 'package:tiktok_clone/features/authentication/widgets/form_button.dart';
 import 'package:tiktok_clone/features/onboarding/interests_screen.dart';
 
 import '../../constants/gaps.dart';
 import '../../constants/sizes.dart';
 
-class LoginFormScreen extends StatefulWidget {
+class LoginFormScreen extends ConsumerStatefulWidget {
   const LoginFormScreen({super.key});
+  final String emailKey = "Email";
+  final String passwordKey = "Password";
 
   @override
-  State<LoginFormScreen> createState() => _LoginFormScreenState();
+  LoginFormScreenState createState() => LoginFormScreenState();
 }
 
-class _LoginFormScreenState extends State<LoginFormScreen> {
+class LoginFormScreenState extends ConsumerState<LoginFormScreen> {
   final GlobalKey<FormState> _formkey = GlobalKey<FormState>();
 
   Map<String, String> formData = {};
@@ -22,7 +26,12 @@ class _LoginFormScreenState extends State<LoginFormScreen> {
     if (_formkey.currentState != null) {
       if (_formkey.currentState!.validate()) {
         _formkey.currentState!.save();
-        context.goNamed(InterestsScreen.routeName);
+        ref.read(loginProvider.notifier).login(
+              formData[widget.emailKey]!,
+              formData[widget.passwordKey]!,
+              context,
+            );
+        //context.goNamed(InterestsScreen.routeName);
       }
     }
   }
@@ -49,7 +58,7 @@ class _LoginFormScreenState extends State<LoginFormScreen> {
                 },
                 onSaved: (newValue) {
                   if (newValue != null) {
-                    formData['Email'] = newValue;
+                    formData[widget.emailKey] = newValue;
                   }
                 },
               ),
@@ -61,13 +70,13 @@ class _LoginFormScreenState extends State<LoginFormScreen> {
                   },
                   onSaved: (newValue) {
                     if (newValue != null) {
-                      formData['Password'] = newValue;
+                      formData[widget.passwordKey] = newValue;
                     }
                   }),
               Gaps.v28,
               GestureDetector(
                 onTap: _onSubmitTap,
-                child: FormButton(disabled: false),
+                child: FormButton(disabled: ref.watch(loginProvider).isLoading),
               ),
             ],
           ),

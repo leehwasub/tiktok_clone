@@ -37,7 +37,7 @@ class BirthdayScreenState extends ConsumerState<BirthdayScreen> {
   void _onNextTap() {
     //이전화면을 제거하기때문에 못돌아감
     //context.goNamed(InterestsScreen.routeName);
-    ref.read(signUpProvider.notifier).signUp();
+    ref.read(signUpProvider.notifier).signUp(context);
   }
 
   void _setTextFieldDate(DateTime date) {
