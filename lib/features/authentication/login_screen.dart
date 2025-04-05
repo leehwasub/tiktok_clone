@@ -18,7 +18,7 @@ class LoginScreen extends ConsumerWidget {
     context.pop();
   }
 
-  void _onEmailLoginTap(BuildContext context) {
+  void _onEmailLoginTap(BuildContext context, WidgetRef ref) {
     Navigator.push(
       context,
       MaterialPageRoute(
