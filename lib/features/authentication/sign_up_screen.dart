@@ -21,7 +21,7 @@ class SignUpScreen extends ConsumerWidget {
     context.pushNamed(LoginScreen.routeName);
   }
 
-  void _onEmailTap(BuildContext context) {
+  void _onEmailTap(BuildContext context, WidgetRef ref) {
     Navigator.push(
       context,
       MaterialPageRoute(
@@ -54,7 +54,7 @@ class SignUpScreen extends ConsumerWidget {
               opacity: opcaityAnimation,
               child: child,
             ),
-          );
+          )
         },
       ),
     );

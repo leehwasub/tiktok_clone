@@ -27,7 +27,7 @@ class SignUpViewModel extends AsyncNotifier<void> {
           form["email"],
           form["password"],
         );
-        await users.createAccount(userCredential);
+        await users.createProfile(userCredential);
       },
     );
     if (!context.mounted) return;
