@@ -2,8 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:provider/provider.dart';
-import 'package:tiktok_clone/common/widgets/video_configuration/video_config.dart';
+import 'package:tiktok_clone/features/videos/models/video_model.dart';
 import 'package:tiktok_clone/features/videos/view_models/playback_config_vm.dart';
 import 'package:tiktok_clone/features/videos/views/widgets/video_button.dart';
 import 'package:tiktok_clone/features/videos/views/widgets/video_comments.dart';
@@ -16,10 +15,15 @@ import '../../../../constants/sizes.dart';
 
 class VideoPost extends ConsumerStatefulWidget {
   final Function onVideoFinished;
+  final VideoModel videoData;
   final int index;
 
-  const VideoPost(
-      {super.key, required this.onVideoFinished, required this.index});
+  const VideoPost({
+    super.key,
+    required this.videoData,
+    required this.onVideoFinished,
+    required this.index,
+  });
 
   @override
   VideoPostState createState() => VideoPostState();
@@ -145,7 +149,8 @@ class VideoPostState extends ConsumerState<VideoPost>
                       child: VideoPlayer(_videoPlayerController),
                     ),
                   )
-                : Container(color: Colors.black),
+                : Image.network(widget.videoData.thumbnailUrl,
+                    fit: BoxFit.cover),
           ),
           Positioned.fill(
             child: GestureDetector(
@@ -183,7 +188,7 @@ class VideoPostState extends ConsumerState<VideoPost>
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "@니꼬",
+                  "@${widget.videoData.creator}",
                   style: TextStyle(
                     fontSize: Sizes.size20,
                     color: Colors.white,
@@ -192,7 +197,7 @@ class VideoPostState extends ConsumerState<VideoPost>
                 ),
                 Gaps.v10,
                 Text(
-                  "This is my house in Thailand!!!",
+                  widget.videoData.description,
                   style: TextStyle(
                     fontSize: Sizes.size16,
                     color: Colors.white,
@@ -234,20 +239,20 @@ class VideoPostState extends ConsumerState<VideoPost>
                   backgroundColor: Colors.black,
                   foregroundColor: Colors.white,
                   foregroundImage: NetworkImage(
-                      "https://avatars.githubusercontent.com/u/3612017"),
-                  child: Text("니꼬"),
+                      "https://firebasestorage.googleapis.com/v0/b/ticktok-whasup.firebasestorage.app/o/avatars%2F${widget.videoData.creatorUid}?alt=media"),
+                  child: Text(widget.videoData.creator),
                 ),
                 Gaps.v16,
                 VideoButton(
                   icon: FontAwesomeIcons.solidHeart,
-                  text: S.of(context).likeCount(987987),
+                  text: S.of(context).likeCount(widget.videoData.likes),
                 ),
                 Gaps.v16,
                 GestureDetector(
                   onTap: () => _onCommentsTap(context),
                   child: VideoButton(
                     icon: FontAwesomeIcons.solidComment,
-                    text: S.of(context).commentCount(1232233232),
+                    text: S.of(context).commentCount(widget.videoData.comments),
                   ),
                 ),
                 Gaps.v16,

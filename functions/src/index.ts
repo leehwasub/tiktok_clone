@@ -19,7 +19,7 @@ import * as admin from "firebase-admin";
 
 admin.initializeApp();
 
-export const onVideoCreated = functions.firestore.onDocumentCreated("vidoes/{videoId}", async (event) => {
+export const onVideoCreated = functions.firestore.onDocumentCreated("videos/{videoId}", async (event) => {
     const snapshot = event.data;
     const spawn = require('child-process-promise').spawn;
     const video = snapshot?.data();
