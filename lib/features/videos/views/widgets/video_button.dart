@@ -7,8 +7,14 @@ import '../../../../constants/sizes.dart';
 class VideoButton extends StatelessWidget {
   final IconData icon;
   final String text;
+  final Color iconColor;
 
-  const VideoButton({super.key, required this.icon, required this.text});
+  const VideoButton({
+    super.key,
+    required this.icon,
+    required this.text,
+    this.iconColor = Colors.white,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -16,8 +22,8 @@ class VideoButton extends StatelessWidget {
       children: [
         FaIcon(
           icon,
-          color: Colors.white,
           size: Sizes.size40,
+          color: iconColor,
         ),
         Gaps.v3,
         Text(

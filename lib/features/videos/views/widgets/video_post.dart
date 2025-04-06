@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tiktok_clone/features/videos/models/video_model.dart';
 import 'package:tiktok_clone/features/videos/view_models/playback_config_vm.dart';
+import 'package:tiktok_clone/features/videos/view_models/video_post_view_model.dart';
 import 'package:tiktok_clone/features/videos/views/widgets/video_button.dart';
 import 'package:tiktok_clone/features/videos/views/widgets/video_comments.dart';
 import 'package:tiktok_clone/generated/l10n.dart';
@@ -37,6 +38,8 @@ class VideoPostState extends ConsumerState<VideoPost>
   final Duration _animationDuration = Duration(milliseconds: 200);
   late final AnimationController _animationController;
   bool _isPaused = false;
+  bool isLiked = false;
+  int likeNum = 0;
 
   void _onVideoChange() {
     if (_videoPlayerController.value.isInitialized) {
@@ -47,6 +50,17 @@ class VideoPostState extends ConsumerState<VideoPost>
     }
   }
 
+  Future<void> _onLikeTap() async {
+    await ref.read(videoPostProvider(widget.videoData.id).notifier).likeVideo();
+    if (isLiked) {
+      likeNum--;
+    } else {
+      likeNum++;
+    }
+    isLiked = !isLiked;
+    setState(() {});
+  }
+
   void _initVideoPlayer() async {
     await _videoPlayerController.initialize();
     await _videoPlayerController.setLooping(true);
@@ -54,6 +68,14 @@ class VideoPostState extends ConsumerState<VideoPost>
       await _videoPlayerController.setVolume(0);
     }
     _videoPlayerController.addListener(_onVideoChange);
+    setState(() {});
+  }
+
+  Future<void> _initLiked() async {
+    likeNum = widget.videoData.likes;
+    isLiked = await ref
+        .read(videoPostProvider(widget.videoData.id).notifier)
+        .isLikedVideo();
     setState(() {});
   }
 
@@ -68,6 +90,7 @@ class VideoPostState extends ConsumerState<VideoPost>
       value: 1.5,
       duration: _animationDuration,
     );
+    _initLiked();
   }
 
   @override
@@ -243,9 +266,13 @@ class VideoPostState extends ConsumerState<VideoPost>
                   child: Text(widget.videoData.creator),
                 ),
                 Gaps.v16,
-                VideoButton(
-                  icon: FontAwesomeIcons.solidHeart,
-                  text: S.of(context).likeCount(widget.videoData.likes),
+                GestureDetector(
+                  onTap: _onLikeTap,
+                  child: VideoButton(
+                    icon: FontAwesomeIcons.solidHeart,
+                    text: S.of(context).likeCount(likeNum),
+                    iconColor: isLiked ? Colors.red : Colors.white,
+                  ),
                 ),
                 Gaps.v16,
                 GestureDetector(
