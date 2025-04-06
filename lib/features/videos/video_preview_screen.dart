@@ -46,6 +46,7 @@ class VideoPreviewScreenState extends ConsumerState<VideoPreviewScreen> {
 
   @override
   void dispose() {
+    _videoPlayerController.pause();
     _videoPlayerController.dispose();
     super.dispose();
   }

@@ -1,1 +1,39 @@
-{"flutter":{"platforms":{"android":{"default":{"projectId":"ticktok-whasup","appId":"1:479459859528:android:727b544ae023eea8258c7d","fileOutput":"android/app/google-services.json"}},"dart":{"lib/firebase_options.dart":{"projectId":"ticktok-whasup","configurations":{"android":"1:479459859528:android:727b544ae023eea8258c7d","ios":"1:479459859528:ios:e419fed9735d1e5f258c7d","web":"1:479459859528:web:db3eb499eeb6d4d4258c7d"}}}}}}
+{
+  "flutter": {
+    "platforms": {
+      "android": {
+        "default": {
+          "projectId": "ticktok-whasup",
+          "appId": "1:479459859528:android:727b544ae023eea8258c7d",
+          "fileOutput": "android/app/google-services.json"
+        }
+      },
+      "dart": {
+        "lib/firebase_options.dart": {
+          "projectId": "ticktok-whasup",
+          "configurations": {
+            "android": "1:479459859528:android:727b544ae023eea8258c7d",
+            "ios": "1:479459859528:ios:e419fed9735d1e5f258c7d",
+            "web": "1:479459859528:web:db3eb499eeb6d4d4258c7d"
+          }
+        }
+      }
+    }
+  },
+  "functions": [
+    {
+      "source": "functions",
+      "codebase": "default",
+      "ignore": [
+        "node_modules",
+        ".git",
+        "firebase-debug.log",
+        "firebase-debug.*.log",
+        "*.local"
+      ],
+      "predeploy": [
+        "npm --prefix=\"$RESOURCE_DIR\" run build"
+      ]
+    }
+  ]
+}
