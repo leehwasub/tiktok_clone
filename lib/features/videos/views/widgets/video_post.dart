@@ -76,7 +76,6 @@ class VideoPostState extends ConsumerState<VideoPost>
     isLiked = await ref
         .read(videoPostProvider(widget.videoData.id).notifier)
         .isLikedVideo();
-    setState(() {});
   }
 
   @override
