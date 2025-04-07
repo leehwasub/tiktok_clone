@@ -34,11 +34,12 @@ final messagesProvider = AsyncNotifierProvider<MessagesViewModel, void>(
   () => MessagesViewModel(),
 );
 
-final chatProvider = StreamProvider<List<MessageModel>>((ref) {
+//autoDispose하지않으면 채팅방 들어가서 나가도 계속 listten하는 상태가됨
+final chatProvider = StreamProvider.autoDispose<List<MessageModel>>((ref) {
   final db = FirebaseFirestore.instance;
   return db
       .collection("chat_rooms")
-      .doc("mknDkiYfxuie0EDJW9xI")
+      .doc("pqzt2QBFc0rubI6ws1X2")
       .collection("texts")
       .orderBy("createdAt")
       .snapshots()
